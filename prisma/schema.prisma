@@ -1,0 +1,24 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Todo {
+  id        Int      @id @default(autoincrement())
+  title     String
+  createdAt DateTime @default(now())
+}
+
+model Prompt {
+  id          Int      @id @default(autoincrement())
+  name        String
+  tags        String[] @default([])
+  prompt      String   @db.Text
+  resultImage String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
